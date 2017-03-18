@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "RegistrationViewController.h"
+#import "PlacesViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,10 +22,14 @@
     // Override point for customization after application launch.
     apiManager = [APIManager sharedInstance];
     
-    RegistrationViewController *vc = [[RegistrationViewController alloc] init];
+    PlacesViewController *vc = [[PlacesViewController alloc] init];
     [vc.view setBackgroundColor:[UIColor whiteColor]];
-    self.window.rootViewController = vc;
 
+    UINavigationController *navigationController = [UINavigationController new];
+    navigationController.viewControllers = @[vc];
+    
+    self.window.rootViewController = navigationController;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 

@@ -16,13 +16,16 @@
 @implementation RegistrationViewController {
     UITextField *emailTextField;
     UITextField *passwordTextField;
+    UITextField *nameTextField;
+    UITextField *surnameTextField;
+    UITextField *phoneTextField;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    self.title = @"Info";
 }
 
 - (void)loadView {
@@ -30,13 +33,36 @@
     
     UIScreen *screen = [UIScreen mainScreen];
     
+    int textFieldHeight = 40;
+    int currentY = 140;
+    
     emailTextField = [BasicElements defaultTextField];
-    emailTextField.frame = CGRectMake(16, 140, screen.bounds.size.width-32, 40);
+    emailTextField.frame = CGRectMake(16, currentY, screen.bounds.size.width-32, textFieldHeight);
     emailTextField.placeholder = @"Email";
     
+    currentY = currentY + textFieldHeight + 16;
+    
     passwordTextField = [BasicElements defaultTextField];
-    passwordTextField.frame = CGRectMake(16, 196, screen.bounds.size.width-32, 40);
+    passwordTextField.frame = CGRectMake(16, currentY, screen.bounds.size.width-32, textFieldHeight);
     passwordTextField.placeholder = @"Password";
+
+    currentY = currentY + textFieldHeight + 16;
+
+    nameTextField = [BasicElements defaultTextField];
+    nameTextField.frame = CGRectMake(16, currentY, screen.bounds.size.width-32, textFieldHeight);
+    nameTextField.placeholder = @"Name";
+
+    currentY = currentY + textFieldHeight + 16;
+
+    surnameTextField = [BasicElements defaultTextField];
+    surnameTextField.frame = CGRectMake(16, currentY, screen.bounds.size.width-32, textFieldHeight);
+    surnameTextField.placeholder = @"Surname";
+
+    currentY = currentY + textFieldHeight + 16;
+
+    phoneTextField = [BasicElements defaultTextField];
+    phoneTextField.frame = CGRectMake(16, currentY, screen.bounds.size.width-32, textFieldHeight);
+    phoneTextField.placeholder = @"Phone";
     
     int registerButtonWidth = 100;
     int registerButtonHeight = 30;
@@ -47,16 +73,16 @@
     
     [self.view addSubview:emailTextField];
     [self.view addSubview:passwordTextField];
+    [self.view addSubview:nameTextField];
+    [self.view addSubview:surnameTextField];
+    [self.view addSubview:phoneTextField];
     [self.view addSubview:registerButton];
 }
 
 
 - (void)registerTapped {
-    [[APIManager sharedInstance] authorizationWithEmail:emailTextField.text password:passwordTextField.text completionBlock:^(NSArray *response) {
-        NSLog(@"AUTHORIZED!!!");
+    [[APIManager sharedInstance] authorizationWithEmail:emailTextField.text password:passwordTextField.text name:@"1" surname:@"2" phone:@"3" completionBlock:^(NSArray *response) {
         
-        PlacesViewController *vc = [[PlacesViewController alloc] init];
-        [self presentViewController:vc animated:YES completion:nil];
     }];
 }
 

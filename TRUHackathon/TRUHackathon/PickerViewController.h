@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PickerViewController : UIViewController
+typedef enum PickerOption
+{
+    PickerOptionCategory = 0,
+    PickerOptionService = 1,
+    PickerOptionEmployee = 2
+} PickerOption;
+
+@protocol PickerDelegate <NSObject>
+@required
+- (void)pickedOptionWithName:(NSString *)option;
+@end
+
+@interface PickerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property PickerOption pickerOption;
+@property (weak) id <PickerDelegate> delegate;
+
+@property NSString *category;
+@property NSString *service;
 
 @end

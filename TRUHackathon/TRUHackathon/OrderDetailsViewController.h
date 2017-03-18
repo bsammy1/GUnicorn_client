@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PickerViewController.h"
 
-@interface OrderDetailsViewController : UIViewController
+@interface OrderDetailsViewController : UIViewController <PickerDelegate>
 
 @end

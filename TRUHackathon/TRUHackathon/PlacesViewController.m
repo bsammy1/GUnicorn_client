@@ -8,6 +8,7 @@
 
 #import "PlacesViewController.h"
 #import "PlaceTableViewCell.h"
+#import "OrderDetailsViewController.h"
 
 @interface PlacesViewController ()
 
@@ -26,7 +27,12 @@
     
     [self.tableView registerClass:[PlaceTableViewCell class] forCellReuseIdentifier:@"PlaceTableViewCell"];
     
-    [self loadPlaces];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadPlaces)
+                                                 name:kSocketConnectedNotification
+                                               object:nil];
+    
+    self.title = @"Places";
 }
 
 - (void)loadPlaces {
@@ -63,6 +69,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 166;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    OrderDetailsViewController *vc = [OrderDetailsViewController new];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -9,6 +9,7 @@
 #ifndef Constants_h
 #define Constants_h
 
-#define kBaseURL @"http://172.16.85.144:3000"
+#define kBaseURL @"http://172.20.10.2:3000"
+#define kSocketConnectedNotification @"SocketConnected"
 
 #endif /* Constants_h */

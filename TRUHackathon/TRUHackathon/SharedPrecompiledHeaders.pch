@@ -15,5 +15,6 @@
 #import "APIManager.h"
 #import "BasicElements.h"
 #import "Place.h"
+#import "Constants.h"
 
 #endif /* Headers_pch */

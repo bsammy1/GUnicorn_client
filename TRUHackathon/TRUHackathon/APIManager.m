@@ -31,31 +31,24 @@
         
         [self.socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
             NSLog(@"socket connected");
+            
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:kSocketConnectedNotification
+             object:self];
         }];
     }
     
     return self;
 }
 
-- (void)authorizationWithEmail:(NSString *)email password:(NSString *)password completionBlock:(CompletionBlock)completionBlock {
-    [self.socket emit:@"registration" with:@[@"test", @"test"]];
+- (void)authorizationWithEmail:(NSString *)email password:(NSString *)password name:(NSString *)name surname:(NSString *)surname phone:(NSString *)phone completionBlock:(CompletionBlock)completionBlock {
+    [self.socket emit:@"registration" with:@[email, password, name, surname, phone]];
 
     [self.socket on:@"registrationSuccess" callback:^(NSArray *response, SocketAckEmitter * ack) {
         NSLog(@"%@", response);
         
         completionBlock(response);
     }];
-//    [socket on:@"currentAmount" callback:^(NSArray* data, SocketAckEmitter* ack) {
-//        double cur = [[data objectAtIndex:0] floatValue];
-//        
-//        [[socket emitWithAck:@"canUpdate" with:@[@(cur)]] timingOutAfter:0 callback:^(NSArray* data) {
-//            [socket emit:@"update" with:@[@{@"amount": @(cur + 2.50)}]];
-//        }];
-//        
-//        [ack with:@[@"Got your currentAmount, ", @"dude"]];
-//    }];
-//    
-//    [socket connect];
 }
 
 - (void)getPlacesWithCompletionBlock:(CompletionBlock)completionBlock {
@@ -76,5 +69,51 @@
         completionBlock(placeObjects);
     }];
 }
+
+- (void)getServicesForCategory:(NSString *)category withCompletionBlock:(CompletionBlock)completionBlock {
+    [self.socket emit:@"getServices" with:@[category]];
+    
+    [self.socket on:@"getServicesSuccess" callback:^(NSArray *response, SocketAckEmitter * ack) {
+        NSLog(@"%@", response);
+        
+        NSArray *categories = response[0];
+        
+        completionBlock(categories);
+    }];
+}
+
+- (void)getEmployeesForService:(NSString *)service withCompletionBlock:(CompletionBlock)completionBlock {
+    [self.socket emit:@"getEmployees" with:@[service]];
+    
+    [self.socket on:@"getEmployeesSuccess" callback:^(NSArray *response, SocketAckEmitter * ack) {
+        NSLog(@"%@", response);
+        
+        NSArray *employees = response[0];
+        
+        completionBlock(employees);
+    }];
+}
+
+- (void)getDaysAndTimesForCategory:(NSString *)category service:(NSString *)service employee:(NSString *)employee withCompletionBlock:(CompletionBlock)completionBlock {
+    [self.socket emit:@"getDaysAndTimes" with:@[category, service, employee]];
+    
+    [self.socket on:@"getDaysAndTimesSuccess" callback:^(NSArray *response, SocketAckEmitter * ack) {
+        NSLog(@"%@", response[0]);
+        
+        completionBlock(response[0]);
+    }];
+}
+
+- (void)bookWithDay:(NSString *)day andTime:(NSString *)time withCompletionBlock:(CompletionBlock)completionBlock {
+    [self.socket emit:@"book" with:@[day, time]];
+    
+    [self.socket on:@"bookSuccess" callback:^(NSArray *response, SocketAckEmitter * ack) {
+        NSLog(@"%@", response[0]);
+        
+        completionBlock(@[]);
+    }];
+}
+
+
 
 @end

@@ -10,12 +10,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TRUHackathon/APIManager.m"
-            timestampString = "511505659.075632"
+            timestampString = "511515682.418407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-getPlacesWithCompletionBlock:"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-getDaysAndTimesForCategory:service:employee:withCompletionBlock:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TRUHackathon/SelectTimesViewController.m"
+            timestampString = "511516595.382326"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-bookedDay:andTime:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SelectTimesViewController bookedDay:andTime:]"
+                  moduleName = "TRUHackathon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsammy/TRUHackathon/TRUHackathon/TRUHackathon/SelectTimesViewController.m"
+                  timestampString = "511516595.625762"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "77">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__47-[SelectTimesViewController bookedDay:andTime:]_block_invoke"
+                  moduleName = "TRUHackathon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bsammy/TRUHackathon/TRUHackathon/TRUHackathon/SelectTimesViewController.m"
+                  timestampString = "511516595.627839"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TRUHackathon/BookTimeTableViewCell.m"
+            timestampString = "511516615.701709"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "-bookTapped"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

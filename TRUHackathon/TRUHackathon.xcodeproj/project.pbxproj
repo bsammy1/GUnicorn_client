@@ -23,6 +23,8 @@
 		B5B02C6F1E7CF1540056349D /* PlaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B02C6E1E7CF1540056349D /* PlaceTableViewCell.m */; };
 		B5B02C721E7CF6310056349D /* OrderDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B02C711E7CF6310056349D /* OrderDetailsViewController.m */; };
 		B5B02C751E7CF68D0056349D /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B02C741E7CF68D0056349D /* PickerViewController.m */; };
+		B5B02C781E7D09CD0056349D /* SelectTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B02C771E7D09CD0056349D /* SelectTimesViewController.m */; };
+		B5B02C7C1E7D0B8E0056349D /* BookTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B02C7B1E7D0B8E0056349D /* BookTimeTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,10 @@
 		B5B02C711E7CF6310056349D /* OrderDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsViewController.m; sourceTree = "<group>"; };
 		B5B02C731E7CF68D0056349D /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
 		B5B02C741E7CF68D0056349D /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
+		B5B02C761E7D09CD0056349D /* SelectTimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTimesViewController.h; sourceTree = "<group>"; };
+		B5B02C771E7D09CD0056349D /* SelectTimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTimesViewController.m; sourceTree = "<group>"; };
+		B5B02C7A1E7D0B8E0056349D /* BookTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTimeTableViewCell.h; sourceTree = "<group>"; };
+		B5B02C7B1E7D0B8E0056349D /* BookTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTimeTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,16 +169,17 @@
 		B5B02C5F1E7CE7440056349D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B5B02C791E7D0B680056349D /* TableViewCells */,
 				B5B02C601E7CE75D0056349D /* RegistrationViewController.h */,
 				B5B02C611E7CE75D0056349D /* RegistrationViewController.m */,
 				B5B02C631E7CE76A0056349D /* PlacesViewController.h */,
 				B5B02C641E7CE76A0056349D /* PlacesViewController.m */,
 				B5B02C701E7CF6310056349D /* OrderDetailsViewController.h */,
 				B5B02C711E7CF6310056349D /* OrderDetailsViewController.m */,
-				B5B02C6D1E7CF1540056349D /* PlaceTableViewCell.h */,
-				B5B02C6E1E7CF1540056349D /* PlaceTableViewCell.m */,
 				B5B02C731E7CF68D0056349D /* PickerViewController.h */,
 				B5B02C741E7CF68D0056349D /* PickerViewController.m */,
+				B5B02C761E7D09CD0056349D /* SelectTimesViewController.h */,
+				B5B02C771E7D09CD0056349D /* SelectTimesViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -184,6 +191,17 @@
 				B5B02C6B1E7CEEB60056349D /* BasicElements.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		B5B02C791E7D0B680056349D /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				B5B02C6D1E7CF1540056349D /* PlaceTableViewCell.h */,
+				B5B02C6E1E7CF1540056349D /* PlaceTableViewCell.m */,
+				B5B02C7A1E7D0B8E0056349D /* BookTimeTableViewCell.h */,
+				B5B02C7B1E7D0B8E0056349D /* BookTimeTableViewCell.m */,
+			);
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 		BBDDFE4B101ECDC24C4A1DF9 /* Frameworks */ = {
@@ -409,8 +427,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B02C781E7D09CD0056349D /* SelectTimesViewController.m in Sources */,
 				B5B02C5D1E7CE3900056349D /* Place.m in Sources */,
 				B5B02C6C1E7CEEB60056349D /* BasicElements.m in Sources */,
+				B5B02C7C1E7D0B8E0056349D /* BookTimeTableViewCell.m in Sources */,
 				B5B02C751E7CF68D0056349D /* PickerViewController.m in Sources */,
 				B5B02C621E7CE75D0056349D /* RegistrationViewController.m in Sources */,
 				B5B02C591E7CD1770056349D /* APIManager.m in Sources */,
