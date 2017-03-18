@@ -1,0 +1,6 @@
+framework module Pods_TRUHackathon {
+  umbrella header "Pods-TRUHackathon-umbrella.h"
+
+  export *
+  module * { export * }
+}

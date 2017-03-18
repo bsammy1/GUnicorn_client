@@ -1,0 +1,6 @@
+framework module Pods_TRUHackathonTests {
+  umbrella header "Pods-TRUHackathonTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
