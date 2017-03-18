@@ -16,6 +16,8 @@
 
 @implementation PickerViewController {
     NSMutableArray *selectionOptions;
+    UIRefreshControl *refreshControl;
+    LoadingImageView *loadingImageView;
 }
 
 - (void)viewDidLoad {
@@ -25,8 +27,30 @@
     selectionOptions = [NSMutableArray new];
     
     [self loadOptions];
+    
+    if (self.pickerOption==PickerOptionCategory) {
+        self.title = @"Select Category";
+    } else if (self.pickerOption==PickerOptionService) {
+        self.title = @"Select Service";
+    } else if (self.pickerOption==PickerOptionEmployee) {
+        self.title = @"Select Employee";
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(requestFailed)
+                                                 name:kRequestFailNotification
+                                               object:nil];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)requestFailed {
+    [loadingImageView hide];
+    [self.view makeToast:@"No internet connection"];
+    [refreshControl endRefreshing];
+}
 
 - (void)loadView {
     [super loadView];
@@ -37,22 +61,43 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    refreshControl = [[UIRefreshControl alloc]init];
+    [self.tableView addSubview:refreshControl];
+    [refreshControl addTarget:self action:@selector(loadOptions) forControlEvents:UIControlEventValueChanged];
+
+    loadingImageView = [LoadingImageView new];
+    
+    [self.view setBackgroundColor:[UIColor colorWithWhite:0.96 alpha:1.0]];
     [self.view addSubview:self.tableView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [loadingImageView hide];
 }
 
 - (void)loadOptions {
     if (self.pickerOption==PickerOptionCategory) {
-        selectionOptions = [@[@"option1", @"option2", @"option3"] mutableCopy];
+        selectionOptions = [@[@"Colouring services", @"Face treatments", @"Hair Cutting", @"Nail Treatments"] mutableCopy];
         
         [self.tableView reloadData];
     } else if (self.pickerOption==PickerOptionService) {
+        [loadingImageView show];
+
         [[APIManager sharedInstance] getServicesForCategory:self.category withCompletionBlock:^(NSArray *response) {
+            [refreshControl endRefreshing];
+            [loadingImageView hide];
+            
             selectionOptions = [response mutableCopy];
             
             [self.tableView reloadData];
         }];
     } else if (self.pickerOption==PickerOptionEmployee) {
+        [loadingImageView show];
+
         [[APIManager sharedInstance] getEmployeesForService:@"" withCompletionBlock:^(NSArray *response) {
+            [refreshControl endRefreshing];
+            [loadingImageView hide];
+
             selectionOptions = [response mutableCopy];
             
             [self.tableView reloadData];

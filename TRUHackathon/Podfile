@@ -8,6 +8,8 @@ target 'TRUHackathon' do
   # Pods for TRUHackathon
 	pod 'Socket.IO-Client-Swift', '~> 8.3.0' # Or latest version
 
+    pod 'Toast', '~> 3.1.0'
+
   target 'TRUHackathonTests' do
     inherit! :search_paths
     # Pods for testing

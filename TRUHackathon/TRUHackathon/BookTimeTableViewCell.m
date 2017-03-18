@@ -7,6 +7,7 @@
 //
 
 #import "BookTimeTableViewCell.h"
+#import "DesingUtils.h"
 
 @implementation BookTimeTableViewCell
 
@@ -20,17 +21,22 @@
     if (self) {
         UIScreen *screen = [UIScreen mainScreen];
         
-        int buttonWidth = 40;
+        int buttonWidth = 56;
         
         self.timeLabel = [BasicElements defaultLabel];
-        self.timeLabel.frame = CGRectMake(16, 16, screen.bounds.size.width-32-buttonWidth, 34);
+        self.timeLabel.frame = CGRectMake(16, 0, screen.bounds.size.width-32-buttonWidth, 56);
         [self.contentView addSubview:self.timeLabel];
         
-        UIButton *bookButton = [BasicElements defaultButton];
-        bookButton.frame = CGRectMake(screen.bounds.size.width-16-buttonWidth, 16, buttonWidth, 34);
-        [bookButton setTitle:@"Book" forState:UIControlStateNormal];
+        UIButton *bookButton = [UIButton new];
+        bookButton.frame = CGRectMake(screen.bounds.size.width-buttonWidth, 0, buttonWidth, 56);
+        [bookButton setImage:[UIImage imageNamed:@"bookIcon"] forState:UIControlStateNormal];
         [bookButton addTarget:self action:@selector(bookTapped) forControlEvents:UIControlEventTouchUpInside];
+        [bookButton setBackgroundColor:[DesingUtils colorFromHexString:@"E8F3FF"]];
         
+        //UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(screen.bounds.size.width-buttonWidth, 0, 1.0, 56)];
+        //[separatorView setBackgroundColor:[UIColor lightGrayColor]];
+        
+//        [self.contentView addSubview:separatorView];
         [self.contentView addSubview:bookButton];
     }
     

@@ -11,4 +11,8 @@
 
 @interface SelectTimesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, BookDelegate>
 
+@property NSString *category;
+@property NSString *service;
+@property NSString *employee;
+
 @end

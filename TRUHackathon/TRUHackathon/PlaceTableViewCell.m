@@ -20,16 +20,25 @@
     if (self) {
         UIScreen *screen = [UIScreen mainScreen];
         
+        int currentY = 16;
+        int labelHeight = 20;
+        
         self.nameLabel = [BasicElements defaultLabel];
-        self.nameLabel.frame = CGRectMake(16, 16, screen.bounds.size.width-32, 34);
+        self.nameLabel.frame = CGRectMake(16, currentY, screen.bounds.size.width-32, labelHeight);
         [self.contentView addSubview:self.nameLabel];
+        self.nameLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightMedium];
+        self.nameLabel.textColor = [UIColor colorWithWhite:0.22 alpha:1.0];
+        
+        currentY = currentY + labelHeight + 8;
         
         self.addressLabel = [BasicElements defaultLabel];
-        self.addressLabel.frame = CGRectMake(16, 66, screen.bounds.size.width-32, 34);
+        self.addressLabel.frame = CGRectMake(16, currentY, screen.bounds.size.width-32, labelHeight);
         [self.contentView addSubview:self.nameLabel];
 
+        currentY = currentY + labelHeight + 8;
+
         self.phoneLabel = [BasicElements defaultLabel];
-        self.phoneLabel.frame = CGRectMake(16, 116, screen.bounds.size.width-32, 34);
+        self.phoneLabel.frame = CGRectMake(16, currentY, screen.bounds.size.width-32, labelHeight);
         [self.contentView addSubview:self.nameLabel];
         [self.contentView addSubview:self.addressLabel];
         [self.contentView addSubview:self.phoneLabel];
@@ -42,6 +51,9 @@
     self.nameLabel.text = place.name;
     self.addressLabel.text = place.address;
     self.phoneLabel.text = place.phone;
+    
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

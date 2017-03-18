@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "PlacesViewController.h"
+#import "DesingUtils.h"
 
 @interface AppDelegate ()
 
@@ -21,6 +22,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     apiManager = [APIManager sharedInstance];
+    
+    [DesingUtils setNavigationBarDesign];
+    [DesingUtils setToastDesign];
     
     PlacesViewController *vc = [[PlacesViewController alloc] init];
     [vc.view setBackgroundColor:[UIColor whiteColor]];

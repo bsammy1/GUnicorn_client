@@ -18,6 +18,8 @@
 
 @implementation PlacesViewController {
     NSMutableArray *places;
+    UIRefreshControl *refreshControl;
+    LoadingImageView *loadingImageView;
 }
 
 - (void)viewDidLoad {
@@ -31,16 +33,32 @@
                                              selector:@selector(loadPlaces)
                                                  name:kSocketConnectedNotification
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(requestFailed)
+                                                 name:kRequestFailNotification
+                                               object:nil];
     
     self.title = @"Places";
 }
 
 - (void)loadPlaces {
+    [loadingImageView show];
+    
     [[APIManager sharedInstance] getPlacesWithCompletionBlock:^(NSArray *response) {
+        [refreshControl endRefreshing];
+        [loadingImageView hide];
+        
         places = [response mutableCopy];
         
         [self.tableView reloadData];
     }];
+}
+
+- (void)requestFailed {    
+    // basic usage
+    [self.view makeToast:@"No internet connection"];
+    [refreshControl endRefreshing];
+    [loadingImageView hide];
 }
 
 - (void)loadView {
@@ -52,6 +70,13 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    refreshControl = [[UIRefreshControl alloc]init];
+    [self.tableView addSubview:refreshControl];
+    [refreshControl addTarget:self action:@selector(loadPlaces) forControlEvents:UIControlEventValueChanged];
+
+    loadingImageView = [LoadingImageView new];
+    
+    [self.view setBackgroundColor:[UIColor colorWithWhite:0.96 alpha:1.0]];
     [self.view addSubview:self.tableView];
 }
 
@@ -68,7 +93,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 166;
+    return 104;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.5;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

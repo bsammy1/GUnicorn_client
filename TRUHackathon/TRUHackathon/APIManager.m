@@ -9,7 +9,9 @@
 #import "APIManager.h"
 #import "Constants.h"
 
-@implementation APIManager
+@implementation APIManager {
+    BOOL connected;
+}
 
 + (id)sharedInstance {
     static APIManager *sharedInstance = nil;
@@ -32,8 +34,31 @@
         [self.socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
             NSLog(@"socket connected");
             
+            connected = YES;
+            
             [[NSNotificationCenter defaultCenter]
              postNotificationName:kSocketConnectedNotification
+             object:self];
+        }];
+        
+        [self.socket on:@"disconnect" callback:^(NSArray* data, SocketAckEmitter* ack) {
+            NSLog(@"socket disconnected");
+            
+            connected = NO;
+            
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:kSocketDisconnectedNotification
+             object:self];
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:kRequestFailNotification
+             object:self];
+        }];
+        
+        [self.socket on:@"requetFail" callback:^(NSArray *response, SocketAckEmitter * ack) {
+            NSLog(@"%@", response);
+            
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:kRequestFailNotification
              object:self];
         }];
     }
@@ -43,7 +68,13 @@
 
 - (void)authorizationWithEmail:(NSString *)email password:(NSString *)password name:(NSString *)name surname:(NSString *)surname phone:(NSString *)phone completionBlock:(CompletionBlock)completionBlock {
     [self.socket emit:@"registration" with:@[email, password, name, surname, phone]];
-
+    
+    if (!connected) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kRequestFailNotification
+         object:self];
+    }
+    
     [self.socket on:@"registrationSuccess" callback:^(NSArray *response, SocketAckEmitter * ack) {
         NSLog(@"%@", response);
         
@@ -54,6 +85,12 @@
 - (void)getPlacesWithCompletionBlock:(CompletionBlock)completionBlock {
     [self.socket emit:@"getPlaces" with:@[]];
     
+    if (!connected) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kRequestFailNotification
+         object:self];
+    }
+
     [self.socket on:@"getPlacesSuccess" callback:^(NSArray *response, SocketAckEmitter * ack) {
         NSLog(@"%@", response);
         
@@ -73,6 +110,12 @@
 - (void)getServicesForCategory:(NSString *)category withCompletionBlock:(CompletionBlock)completionBlock {
     [self.socket emit:@"getServices" with:@[category]];
     
+    if (!connected) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kRequestFailNotification
+         object:self];
+    }
+
     [self.socket on:@"getServicesSuccess" callback:^(NSArray *response, SocketAckEmitter * ack) {
         NSLog(@"%@", response);
         
@@ -85,6 +128,12 @@
 - (void)getEmployeesForService:(NSString *)service withCompletionBlock:(CompletionBlock)completionBlock {
     [self.socket emit:@"getEmployees" with:@[service]];
     
+    if (!connected) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kRequestFailNotification
+         object:self];
+    }
+
     [self.socket on:@"getEmployeesSuccess" callback:^(NSArray *response, SocketAckEmitter * ack) {
         NSLog(@"%@", response);
         
@@ -97,6 +146,12 @@
 - (void)getDaysAndTimesForCategory:(NSString *)category service:(NSString *)service employee:(NSString *)employee withCompletionBlock:(CompletionBlock)completionBlock {
     [self.socket emit:@"getDaysAndTimes" with:@[category, service, employee]];
     
+    if (!connected) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kRequestFailNotification
+         object:self];
+    }
+
     [self.socket on:@"getDaysAndTimesSuccess" callback:^(NSArray *response, SocketAckEmitter * ack) {
         NSLog(@"%@", response[0]);
         
@@ -107,6 +162,12 @@
 - (void)bookWithDay:(NSString *)day andTime:(NSString *)time withCompletionBlock:(CompletionBlock)completionBlock {
     [self.socket emit:@"book" with:@[day, time]];
     
+    if (!connected) {
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:kRequestFailNotification
+         object:self];
+    }
+
     [self.socket on:@"bookSuccess" callback:^(NSArray *response, SocketAckEmitter * ack) {
         NSLog(@"%@", response[0]);
         
