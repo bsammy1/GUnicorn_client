@@ -1,15 +1,20 @@
 PODS:
+  - Realm (2.4.4):
+    - Realm/Headers (= 2.4.4)
+  - Realm/Headers (2.4.4)
   - Socket.IO-Client-Swift (8.3.0)
   - Toast (3.1.0)
 
 DEPENDENCIES:
+  - Realm
   - Socket.IO-Client-Swift (~> 8.3.0)
   - Toast (~> 3.1.0)
 
 SPEC CHECKSUMS:
+  Realm: 5a280a1f5a9a3c267bebf4f41ee47911137703d7
   Socket.IO-Client-Swift: 7ad3aded3c0f74d99555e950ac3aa82ca3eefbaf
   Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
 
-PODFILE CHECKSUM: 729d2b498db4487da43ca67cdc114441ef03c73c
+PODFILE CHECKSUM: 1813d2d606f42bd662e10713ef621278f079cbe7
 
 COCOAPODS: 1.2.0

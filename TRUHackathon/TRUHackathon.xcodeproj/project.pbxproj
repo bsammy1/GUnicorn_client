@@ -45,6 +45,9 @@
 		B5B02CB11E7D74AE0056349D /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B02CAE1E7D74AE0056349D /* success@2x.png */; };
 		B5B02CB21E7D74AE0056349D /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B02CAF1E7D74AE0056349D /* success.png */; };
 		B5B02CB31E7D74AE0056349D /* success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B02CB01E7D74AE0056349D /* success@3x.png */; };
+		B5B02CB61E7D7D060056349D /* YourBookingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B02CB51E7D7D060056349D /* YourBookingsViewController.m */; };
+		B5B02CB91E7D7E7A0056349D /* Booking.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B02CB81E7D7E7A0056349D /* Booking.m */; };
+		B5B02CBC1E7D809A0056349D /* BookingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B02CBB1E7D809A0056349D /* BookingTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,12 @@
 		B5B02CAE1E7D74AE0056349D /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		B5B02CAF1E7D74AE0056349D /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
 		B5B02CB01E7D74AE0056349D /* success@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@3x.png"; sourceTree = "<group>"; };
+		B5B02CB41E7D7D060056349D /* YourBookingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourBookingsViewController.h; sourceTree = "<group>"; };
+		B5B02CB51E7D7D060056349D /* YourBookingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourBookingsViewController.m; sourceTree = "<group>"; };
+		B5B02CB71E7D7E7A0056349D /* Booking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Booking.h; sourceTree = "<group>"; };
+		B5B02CB81E7D7E7A0056349D /* Booking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Booking.m; sourceTree = "<group>"; };
+		B5B02CBA1E7D809A0056349D /* BookingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingTableViewCell.h; sourceTree = "<group>"; };
+		B5B02CBB1E7D809A0056349D /* BookingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +213,8 @@
 				B5B02C581E7CD1770056349D /* APIManager.m */,
 				B5B02C5B1E7CE3900056349D /* Place.h */,
 				B5B02C5C1E7CE3900056349D /* Place.m */,
+				B5B02CB71E7D7E7A0056349D /* Booking.h */,
+				B5B02CB81E7D7E7A0056349D /* Booking.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -222,6 +233,8 @@
 				B5B02C741E7CF68D0056349D /* PickerViewController.m */,
 				B5B02C761E7D09CD0056349D /* SelectTimesViewController.h */,
 				B5B02C771E7D09CD0056349D /* SelectTimesViewController.m */,
+				B5B02CB41E7D7D060056349D /* YourBookingsViewController.h */,
+				B5B02CB51E7D7D060056349D /* YourBookingsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -243,6 +256,8 @@
 		B5B02C791E7D0B680056349D /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				B5B02CBA1E7D809A0056349D /* BookingTableViewCell.h */,
+				B5B02CBB1E7D809A0056349D /* BookingTableViewCell.m */,
 				B5B02C6D1E7CF1540056349D /* PlaceTableViewCell.h */,
 				B5B02C6E1E7CF1540056349D /* PlaceTableViewCell.m */,
 				B5B02C7A1E7D0B8E0056349D /* BookTimeTableViewCell.h */,
@@ -518,6 +533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5B02C781E7D09CD0056349D /* SelectTimesViewController.m in Sources */,
+				B5B02CBC1E7D809A0056349D /* BookingTableViewCell.m in Sources */,
 				B5B02C5D1E7CE3900056349D /* Place.m in Sources */,
 				B5B02C6C1E7CEEB60056349D /* BasicElements.m in Sources */,
 				B5B02CA11E7D53530056349D /* LoadingImageView.m in Sources */,
@@ -527,8 +543,10 @@
 				B5B02C591E7CD1770056349D /* APIManager.m in Sources */,
 				B5B02C651E7CE76A0056349D /* PlacesViewController.m in Sources */,
 				B5B02C7F1E7D28C90056349D /* DesingUtils.m in Sources */,
+				B5B02CB61E7D7D060056349D /* YourBookingsViewController.m in Sources */,
 				B5B02C361E7CCF730056349D /* AppDelegate.m in Sources */,
 				B5B02C721E7CF6310056349D /* OrderDetailsViewController.m in Sources */,
+				B5B02CB91E7D7E7A0056349D /* Booking.m in Sources */,
 				B5B02C331E7CCF730056349D /* main.m in Sources */,
 				B5B02C6F1E7CF1540056349D /* PlaceTableViewCell.m in Sources */,
 			);
